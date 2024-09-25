@@ -13,8 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -58,7 +57,7 @@ public class ProductSeeder implements CommandLineRunner {
             allImages.thenRun(() -> {
                 List<String> imagesUrls = imagesFutures.parallelStream()
                         .map(CompletableFuture::join)
-                        .collect(Collectors.toList());;
+                        .collect(Collectors.toUnmodifiableList());
                 executor.shutdown();
                 List<Category> categories = new ArrayList<>();
                 int imageIndex = 0;
@@ -85,10 +84,11 @@ public class ProductSeeder implements CommandLineRunner {
                                 faker.number().randomDouble(2, 10, 100),
                                 faker.number().randomDouble(2, 0, 20),
                                 category,
-                                new ArrayList<>()
+                                Set.of(),
+                                Set.of()
                         );
 
-                        List<ProductImage> images = new ArrayList<>();
+                        Set<ProductImage> images = new HashSet<>();
                         for (int k = 0; k < imagesPerProductCount; k++) {
                             // Використовуємо наступне зображення для продукту
                             images.add(new ProductImage(

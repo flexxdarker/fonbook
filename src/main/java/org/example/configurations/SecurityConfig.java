@@ -27,10 +27,10 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 public class SecurityConfig{
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
-    private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
+      private final JwtAuthenticationFilter jwtAuthenticationFilter;
+      private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+      private final UserService userService;
+      private final PasswordEncoder passwordEncoder;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -54,6 +54,10 @@ public class SecurityConfig{
                                 "/api/category/create/**",
                                 "/api/category/update/**",
                                 "/api/category/delete/**").hasAuthority(Roles.Admin.toString())
+                        .requestMatchers(
+                                "/api/auth/add-favorite/**",
+                                "/api/auth/remove-favorite/**",
+                                "/api/auth/get-favorites/**").hasAuthority(Roles.User.toString())
                         .anyRequest().permitAll())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider())

@@ -1,11 +1,10 @@
 package org.example.configurations;
 
+import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.StringUtils;
 import org.example.entities.User;
 import org.example.interfaces.IUserRepository;
 import org.example.services.JwtService;
