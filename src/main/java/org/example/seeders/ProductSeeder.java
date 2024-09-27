@@ -17,7 +17,6 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 
 @Component
@@ -57,7 +56,7 @@ public class ProductSeeder implements CommandLineRunner {
             allImages.thenRun(() -> {
                 List<String> imagesUrls = imagesFutures.parallelStream()
                         .map(CompletableFuture::join)
-                        .collect(Collectors.toUnmodifiableList());
+                        .toList();
                 executor.shutdown();
                 List<Category> categories = new ArrayList<>();
                 int imageIndex = 0;
@@ -84,6 +83,7 @@ public class ProductSeeder implements CommandLineRunner {
                                 faker.number().randomDouble(2, 10, 100),
                                 faker.number().randomDouble(2, 0, 20),
                                 category,
+                                Set.of(),
                                 Set.of(),
                                 Set.of()
                         );
