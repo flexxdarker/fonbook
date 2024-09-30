@@ -1,6 +1,6 @@
 ///////12313
 
-![Alt text](relative%20path/to/img.jpg?raw=true "Title")
+![myimage-alt-tag]([url-to-image](https://th.bing.com/th/id/R.8a247bc308febad00a667aa85df895e6?rik=QGldXklYE9E8Ow&riu=http%3a%2f%2feskipaper.com%2fimages%2fbeautiful-girls-12.jpg&ehk=fXzFuiqtceHJ8wHivdOG97eu2vTwhUa5pz0DoIfm4Ew%3d&risl=&pid=ImgRaw&r=0))
 
 
 
